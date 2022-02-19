@@ -1,12 +1,12 @@
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useMounted } from '../hooks';
 import { styled } from '../stitches.config';
 
-const Navbar = styled('nav', {
+const NavbarWrapper = styled('nav', {
 	display: 'flex',
 	justifyContent: 'space-around',
 	width: '100vw',
@@ -26,9 +26,9 @@ const NavBrand = styled('a', {
 
 const StyledLink = styled('a', {
 	textDecoration: 'none',
-	color: '$indigo2',
+	color: '$fg',
 	'&.active': {
-		borderBottom: '2px solid $indigo2',
+		borderBottom: '2px solid $fg',
 	},
 });
 
@@ -39,10 +39,8 @@ const ThemeChangerWrapper = styled('div', {
 });
 
 const ThemeChanger = () => {
-	const [mounted, setMounted] = useState(false);
+	const mounted = useMounted();
 	const { theme, setTheme } = useTheme();
-
-	useEffect(() => setMounted(true), []);
 
 	if (!mounted) return null;
 
@@ -51,19 +49,19 @@ const ThemeChanger = () => {
 			onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
 		>
 			{theme === 'light' ? (
-				<FontAwesomeIcon icon={faSun} />
-			) : (
 				<FontAwesomeIcon icon={faMoon} />
+			) : (
+				<FontAwesomeIcon icon={faSun} />
 			)}
 		</ThemeChangerWrapper>
 	);
 };
 
-const N = () => {
+const Navbar = () => {
 	const router = useRouter();
 
 	return (
-		<Navbar>
+		<NavbarWrapper>
 			<NavbarNav>
 				<Link href="/" passHref>
 					<NavBrand>Next Starter</NavBrand>
@@ -82,8 +80,8 @@ const N = () => {
 				</Link>
 				<ThemeChanger />
 			</NavbarNav>
-		</Navbar>
+		</NavbarWrapper>
 	);
 };
 
-export default N;
+export default Navbar;
