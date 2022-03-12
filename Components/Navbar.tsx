@@ -42,17 +42,20 @@ const ThemeChanger = () => {
 	const mounted = useMounted();
 	const { theme, setTheme } = useTheme();
 
+	const handleChange = () => setTheme(theme === 'light' ? 'dark' : 'light');
+
 	if (!mounted) return null;
 
+	const ThemeChangerIcon =
+		theme === 'light' ? (
+			<FontAwesomeIcon icon={faMoon} />
+		) : (
+			<FontAwesomeIcon icon={faSun} />
+		);
+
 	return (
-		<ThemeChangerWrapper
-			onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-		>
-			{theme === 'light' ? (
-				<FontAwesomeIcon icon={faMoon} />
-			) : (
-				<FontAwesomeIcon icon={faSun} />
-			)}
+		<ThemeChangerWrapper onClick={handleChange}>
+			{ThemeChangerIcon}
 		</ThemeChangerWrapper>
 	);
 };
