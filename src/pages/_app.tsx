@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
-import { darkTheme, globalStyles } from '../stitches.config';
+import { darkTheme, globalStyles } from '../../stitches.config';
 import Layout from './Layout';
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -8,7 +8,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 	return (
 		<ThemeProvider
-			attribute="class"
+			attribute='class'
 			defaultTheme={darkTheme.className}
 			enableSystem={false}
 			value={{ light: 'light', dark: darkTheme.className }}

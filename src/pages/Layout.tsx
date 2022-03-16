@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Navbar from '../Components/Navbar';
-import { styled } from '../stitches.config';
+import { styled } from '../../stitches.config';
 
 const Container = styled('div', {
 	color: '$fg',

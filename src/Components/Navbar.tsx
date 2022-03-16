@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { styled } from '../../stitches.config';
 import { useMounted } from '../hooks';
-import { styled } from '../stitches.config';
 
 const NavbarWrapper = styled('nav', {
 	display: 'flex',
@@ -66,18 +66,22 @@ const Navbar = () => {
 	return (
 		<NavbarWrapper>
 			<NavbarNav>
-				<Link href="/" passHref>
+				<Link href='/' passHref>
 					<NavBrand>Next Starter</NavBrand>
 				</Link>
 			</NavbarNav>
 			<NavbarNav>
-				<Link href="/" passHref>
-					<StyledLink className={router.pathname === '/' ? 'active' : ''}>
+				<Link href='/' passHref>
+					<StyledLink
+						className={router.pathname === '/' ? 'active' : ''}
+					>
 						Home
 					</StyledLink>
 				</Link>
-				<Link href="/about" passHref>
-					<StyledLink className={router.pathname === '/about' ? 'active' : ''}>
+				<Link href='/about' passHref>
+					<StyledLink
+						className={router.pathname === '/about' ? 'active' : ''}
+					>
 						About
 					</StyledLink>
 				</Link>
